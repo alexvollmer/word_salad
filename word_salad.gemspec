@@ -1,4 +1,3 @@
-(in /Users/alex/Development/word_salad.git)
 Gem::Specification.new do |s|
   s.name = %q{word_salad}
   s.version = "0.9.0"
