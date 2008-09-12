@@ -11,17 +11,17 @@ some systems may need a little help.
 
 Generating random data is helpful for all kinds of testing. You could
 just generate random gobble-dee-gook, but why not generate something
-that looks a bit English-like? If nothing, you'll find great enjoyment
-in all of the potential band-names that this gem generates.
+that looks a bit English-like? If for no other reason, you'll find great
+enjoyment in all of the potential band-names that this gem generates.
 
-  require 'rubygems'
-  require 'word_salad'
+    require 'rubygems'
+    require 'word_salad'
 
-  include WordSalad
+    include WordSalad
 
-  words(3) #=> ['draw', 'ameliorate', 'bonanza']
-  sentences(2) #=> ['Shoot jonesing the make castle.', 'Blue murdered slight bastion.']
-  paragraphs(2) #=> []
+    words(3) ==> ['draw', 'ameliorate', 'bonanza']
+    sentences(2) ==> ['Shoot jonesing the make castle.', 'Blue murdered slight bastion.']
+    paragraphs(2) ==> []
 
 WordSalad is a module, so including it in your class will activate
 WordSalad's latent, random-generation super-powers in your class.
@@ -30,7 +30,7 @@ WordSalad's latent, random-generation super-powers in your class.
 
 To install Word Salad, simply:
 
-  sudo gem install word_salad
+    sudo gem install word_salad
 
 == LICENSE:
 

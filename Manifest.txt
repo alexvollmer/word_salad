@@ -1,7 +1,6 @@
 History.txt
 Manifest.txt
-README
+README.txt
 Rakefile
-bin/word_salad
 lib/word_salad.rb
 spec/word_salad_spec.rb
