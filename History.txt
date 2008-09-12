@@ -1,0 +1,3 @@
+=== 0.9.0 / 2008-09-09
+
+* Happy Birthday Word Salad!
