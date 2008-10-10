@@ -3,25 +3,14 @@ module WordSalad
 
   # Returns +num+ random words from the dictionary.
   def words(num)
-    unless @dict
-	if FileTest.exists?("/usr/share/dict/words")
-        @dict = open("/usr/share/dict/words")
-	elsif FileTest.exists?("/usr/share/words")
-	  @dict = open("/usr/share/words")
-      else
-        raise "No dictionary file found!"
-      end
-      @size = File.size(@dict)
-    end
-
     (1..num).to_a.map do |x|
-      @dict.seek(rand(@size - 1000))
-      b = @dict.readchar
+      dict.seek(rand(@size - 1000))
+      b = dict.readchar
       while b != 10
-        b = @dict.readchar
+        b = dict.readchar
       end
 
-      @dict.readline.strip
+      dict.readline.strip
     end
   end
 
@@ -44,8 +33,23 @@ module WordSalad
     end
   end
 
-  protected
-  def dictionary
-    # TODO: figure out all the places dictionary files go
+  private
+  def dict
+    unless @dict
+      if self.respond_to?(:dictionary_path)
+        unless FileTest.exists?(dictionary_path)
+          raise "No dictionary file found at #{dictionary_path}"
+        end
+        @dict = open(dictionary_path)
+      elsif FileTest.exists?("/usr/share/dict/words")
+        @dict = open("/usr/share/dict/words")
+      elsif FileTest.exists?("/usr/share/words")
+        @dict = open("/usr/share/words")
+      else
+        raise "No dictionary file found!"
+      end
+      @size = File.size(@dict)
+    end
+    @dict
   end
 end

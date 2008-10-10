@@ -26,6 +26,24 @@ enjoyment in all of the potential band-names that this gem generates.
 WordSalad is a module, so including it in your class will activate
 WordSalad's latent, random-generation super-powers in your class.
 
+== CUSTOMIZATION
+
+WordSalad relies on the presence of a valid Unix dictionary file. It
+will do it's best to figure out where one is, but doesn't account for
+every platform. If you are one of those special people that has a
+dictionary file in a place WordSalad can't find, you can tell it by
+implementing a <tt>dictionary_path</tt> method which returns a string
+path pointing to the dictionary file you would like to use.
+
+     require 'rubygems'
+     require 'word_salad'
+
+     include WordSalad
+
+     def dictionary_path
+       "/my/special/dictionary/path"
+     end
+
 == INSTALL:
 
 To install Word Salad, simply:

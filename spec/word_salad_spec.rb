@@ -1,3 +1,5 @@
+require "fileutils"
+require "tempfile"
 require "rubygems"
 require "spec"
 require File.join(File.dirname(__FILE__), "../lib/word_salad")
@@ -40,6 +42,47 @@ describe WordSalad do
         s.size.should == 5
         s.each do |sent|
           sent.split(' ').size.should be_close(10, 2)
+        end
+      end
+    end
+  end
+
+  describe 'overriding the default dictionary path' do
+
+    class MySpecialClass
+      include WordSalad
+
+      attr_reader :dictionary_path
+
+      def initialize
+        t = Tempfile.new "word_salad"
+        2000.times { t << "alpha\n" }
+        t.close
+        @dictionary_path = t.path
+      end
+    end
+
+    before(:all) do
+      @salad = MySpecialClass.new
+    end
+
+    it 'should work for words' do
+      w = @salad.words(5)
+      w.each { |e| e.should == "alpha" }
+    end
+
+    it 'should work for sentences' do
+      s = @salad.sentences(5)
+      s.each do |sent|
+        sent.split(' ').each { |e| e.downcase.should match(/alpha/) }
+      end
+    end
+
+    it 'should work for paragraphs' do
+      p = @salad.paragraphs(5)
+      p.each do |para|
+        para.split('.').each do |sent|
+          sent.split(' ').each { |e| e.downcase.should match(/alpha/) }
         end
       end
     end
