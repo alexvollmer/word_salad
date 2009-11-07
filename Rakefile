@@ -1,22 +1,28 @@
 # -*- ruby -*-
 
 require 'rubygems'
-require 'hoe'
-require './lib/word_salad.rb'
+require 'rake'
 
-Hoe.new('WordSalad', WordSalad::VERSION) do |p|
-  # p.rubyforge_name = 'WordSaladx' # if different than lowercase project name
-  p.name = 'word_salad'
-  p.developer('Alex Vollmer', 'alex.vollmer@gmail.com')
-  p.description = p.paragraphs_of('README.txt', 3..3).join("\n\n")
-  p.summary = 'Generate strings of random English text'
-  p.url = 'http://livollmers.net'
-  p.changes = p.paragraphs_of('History.txt', 0..1).join("\n\n")
-  p.extra_dev_deps << ["rspec", ">=1.1.1"]
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "word-salad"
+    gem.summary = %Q{Generate strings of random English text}
+    gem.description = %Q{Word Salad is a very simple Ruby library for generating random strings of English words based on the Unix dictionary file.}
+    gem.email = "alex.vollmer@gmail.com"
+    gem.homepage = "http://github.com/alexvollmer/word_salad"
+    gem.authors = ["Alex Vollmer"]
+    gem.files = FileList["lib/**/*.rb", "spec/**/*"]
+
+    gem.add_development_dependency "rspec"
+  end
+rescue LoadError
+  puts "Jeweler (or a dependency) not available."
 end
 
 require "spec/rake/spectask"
 Spec::Rake::SpecTask.new do |t|
+  t.libs << 'lib' << 'spec'
   t.spec_files = FileList['spec/**/*_spec.rb']
 end
 
