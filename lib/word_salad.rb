@@ -1,7 +1,6 @@
 require "word_salad/core_ext"
 
 class WordSalad
-  VERSION = '0.9.0'
 
   # The current dictionary path
   def self.dictionary_path
