@@ -26,4 +26,10 @@ Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
 end
 
+require "rake/rdoctask"
+Rake::RDocTask.new do |rd|
+  rd.main = "README.txt"
+  rd.rdoc_files.include("README.txt", "lib/**/*.rb")
+end
+
 # vim: syntax=Ruby
