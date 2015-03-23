@@ -1,3 +1,6 @@
+*** NOTE ***
+This repository only covers word_salad version 1.0.0. Newer version available via RubyGems are maintained in other forks.
+
 = Word Salad
 
 == DESCRIPTION:
